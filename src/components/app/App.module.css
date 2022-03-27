@@ -1,0 +1,10 @@
+.App {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  min-height: 100vh;
+  /*composes: pt-10 from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/box.css';*/
+}
+
+

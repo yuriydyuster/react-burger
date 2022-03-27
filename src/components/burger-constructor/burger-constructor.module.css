@@ -1,0 +1,11 @@
+.burger_constructor {
+    display: flex;
+    flex-direction: column;
+    composes: ml-5 from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/box.css';
+
+    border-style: dotted;
+    border-color: white;
+    border-width: 1px;
+    width: 100%;
+
+}

@@ -1,0 +1,54 @@
+.menu_item {
+    display: inline-flex;
+    align-items: center;
+    composes: pb-4 from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/box.css';
+    /*composes: mr-5 from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/box.css';*/
+    composes: pt-4 from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/box.css';
+    composes: pl-4 from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/box.css';
+    composes: pr-4 from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/box.css';
+    z-index: 0;
+
+}
+
+a.menu_item {
+    text-decoration: none;
+
+}
+
+.menu_item_title {
+    display: inline-flex;
+    align-items: center;
+    composes: text from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/common.css';
+    composes: text_type_main-default from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/common.css';
+    composes: text_color_primary from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/common.css';
+    text-decoration: none;
+    line-height: 24px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.menu_item_title_inactive {
+    display: inline-flex;
+    align-items: center;
+    composes: text from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/common.css';
+    composes: text_type_main-default from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/common.css';
+    composes: text_color_inactive from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/common.css';
+    text-decoration: none;
+    line-height: 24px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.menu_item_icon {
+    display: inline-flex;
+    align-items: center;
+    composes: mr-2 from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/box.css';
+    /*alignment: center;*/
+    max-width: 22px;
+    max-height: 22px;
+}
+
+.menu_item_link {
+    composes: text from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/common.css';
+
+}
