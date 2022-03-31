@@ -2,7 +2,6 @@
     display: inline-flex;
     align-items: center;
     composes: pb-4 from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/box.css';
-    /*composes: mr-5 from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/box.css';*/
     composes: pt-4 from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/box.css';
     composes: pl-4 from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/box.css';
     composes: pr-4 from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/box.css';
@@ -43,7 +42,6 @@ a.menu_item {
     display: inline-flex;
     align-items: center;
     composes: mr-2 from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/box.css';
-    /*alignment: center;*/
     max-width: 22px;
     max-height: 22px;
 }

@@ -1,16 +1,13 @@
 
 
 .overlay {
-    /*box-sizing: border-box;*/
     z-index: 1;
     position: fixed;
-    /*overflow: hidden;*/
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
     background-color: rgba(0,0,0,0.6);
-    /*opacity: 60%;*/
 }
 
 .modal {

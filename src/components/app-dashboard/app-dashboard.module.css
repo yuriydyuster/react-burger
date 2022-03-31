@@ -6,12 +6,11 @@
     max-width: 1240px;
     height: 100%;
 
-    border-style: dotted;
-    border-color: white;
-    border-width: 1px;
+    /*border-style: dotted;*/
+    /*border-color: white;*/
+    /*border-width: 1px;*/
 
     min-height: 100%;
-    overflow: hidden;
     justify-content: space-between;
 
 }

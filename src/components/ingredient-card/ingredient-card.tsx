@@ -37,9 +37,9 @@ function IngredientCard (props: any
     ];
 
 
+    function IngredientDetails () {
 
-
-    const modal = (
+    return(
         <Modal title="Детали ингредиента" toClose={() => setStatus(false)}>
             <img className={styles.modal_image} src={props.image_large}/>
             <p className={styles.modal_title}>{props.name}</p>
@@ -55,7 +55,7 @@ function IngredientCard (props: any
             </div>
 
         </Modal>
-    );
+    );}
 
     return (
         <>
@@ -68,10 +68,9 @@ function IngredientCard (props: any
                 </div>
                 <p className={styles.card_title}>{props.name}</p>
             </div>
-            {isDetailsOpened && modal}
+            {isDetailsOpened && <IngredientDetails/>}
         </>
     );
-
 }
 
 

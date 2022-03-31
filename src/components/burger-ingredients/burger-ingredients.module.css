@@ -3,14 +3,15 @@
     flex-direction: column;
     composes: mr-5 from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/box.css';
 
-    border-style: dotted;
-    border-color: white;
-    border-width: 1px;
+    /*border-style: dotted;*/
+    /*border-color: white;*/
+    /*border-width: 1px;*/
+
     width: 100%;
+
 }
 
 .title {
-    /*composes: text from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/common.css';*/
     composes: text_type_main-large from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/common.css';
     composes: text_color_primary from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/common.css';
     composes: mt-10 from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/box.css';
@@ -32,7 +33,6 @@
     composes: text_color_primary from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/common.css';
     text-align: start;
     composes: mt-10 from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/box.css';
-    /*composes: mb-6 from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/box.css';*/
     margin-bottom: 0px;
 
 }
