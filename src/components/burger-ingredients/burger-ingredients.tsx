@@ -11,7 +11,7 @@ function BurgerIngredients (props : any) {
             <p className={styles.title}>
                 Соберите бургер
             </p>
-            <IngredientsTabs initialTab={"buns"}/>
+            <IngredientsTabs initialTab={0}/>
 
         </div>
     );
@@ -19,7 +19,22 @@ function BurgerIngredients (props : any) {
 }
 
 const IngredientsTabs = (props: any) => {
-    const [current, setCurrent] = React.useState(props.initialTab);
+    const categories = [{
+        value: "bun",
+        name: "Булки"
+    }, {
+        value: "sauce",
+        name: "Соусы"
+    }, {
+        value: "main",
+        name: "Начинки"}
+    ];
+
+    console.log(categories);
+
+
+
+    const [current, setCurrent] = React.useState(categories[props.initialTab].value);
     useEffect(() => {
         console.log(current);
         document.location.href = "#"+current;
@@ -30,6 +45,8 @@ const IngredientsTabs = (props: any) => {
         data: [],
         success: false,
     });
+
+
 
     useEffect(() => {
         const getIngredients = async () => {
@@ -42,51 +59,79 @@ const IngredientsTabs = (props: any) => {
             setLoadingStatus(false);
         }
         getIngredients();
-    }, [])
+    }, []);
 
 
     return (
         <>
             <div style={{display: 'flex'}}>
-                <Tab value="buns" active={current === 'buns'} onClick={setCurrent}>
-                    Булки
-                </Tab>
-                <Tab value="sauces" active={current === 'sauces'} onClick={setCurrent}>
-                    Соусы
-                </Tab>
-                <Tab value="fillings" active={current === 'fillings'} onClick={setCurrent}>
-                    Начинки
-                </Tab>
+                {categories.map((item, index) => {
+                    return (
+                        <Tab key={index} value={item.value} active={current === item.value} onClick={setCurrent}>
+                            {item.name}
+                        </Tab>
+                    )
+                })}
+
+                {/*<Tab value="bun" active={current === 'bun'} onClick={setCurrent}>*/}
+                {/*    Булки*/}
+                {/*</Tab>*/}
+                {/*<Tab value="sauce" active={current === 'sauce'} onClick={setCurrent}>*/}
+                {/*    Соусы*/}
+                {/*</Tab>*/}
+                {/*<Tab value="main" active={current === 'main'} onClick={setCurrent}>*/}
+                {/*    Начинки*/}
+                {/*</Tab>*/}
+
             </div>
 
             <div className={styles.catalogue}>
 
-                <p id="buns" className={styles.category_title} >Булки</p>
-                <div className={styles.category_section}>
-                    {isLoading ? 'Загрузка...' : ingredients.data
-                        .filter((item : any, index, array) => (item.type === "bun"))
-                        .map((item : any, index, array) => {
-                            return (<IngredientCard key={index} price={item.price} name={item.name} image={item.image}/>)
-                        })}
-                </div>
+                {categories.map((category, categoryIndex) => {
+                    return (
+                        <>
+                            <p id={category.value} className={styles.category_title} >{category.name}</p>
+                            <div className={styles.category_section}>
+                                {isLoading ? 'Загрузка...' : ingredients.data
+                                    .filter((ingredient : any, index, array) => (ingredient.type === category.value))
+                                    .map((ingredient : any, index, array) => {
+                                        return (<IngredientCard
+                                            key={index}
+                                            {...ingredient}/>
+                                        )
+                                    })}
+                            </div>
+                        </>
+                    )
+                })}
 
-                <p id="sauces" className={styles.category_title} >Соусы</p>
-                <div className={styles.category_section}>
-                    {isLoading ? 'Загрузка...' : ingredients.data
-                        .filter((item : any, index, array) => (item.type === "sauce"))
-                        .map((item : any, index, array) => {
-                            return (<IngredientCard key={index} price={item.price} name={item.name} image={item.image}/>)
-                        })}
-                </div>
 
-                <p id="fillings" className={styles.category_title}>Начинки</p>
-                <div className={styles.category_section}>
-                    {isLoading ? 'Загрузка...' : ingredients.data
-                        .filter((item : any, index, array) => (item.type === "main"))
-                        .map((item : any, index, array) => {
-                            return (<IngredientCard key={index} price={item.price} name={item.name} image={item.image}/>)
-                        })}
-                </div>
+            {/*    <p id="bun" className={styles.category_title} >Булки</p>*/}
+            {/*    <div className={styles.category_section}>*/}
+            {/*        {isLoading ? 'Загрузка...' : ingredients.data*/}
+            {/*            .filter((item : any, index, array) => (item.type === "bun"))*/}
+            {/*            .map((item : any, index, array) => {*/}
+            {/*                return (<IngredientCard key={index} price={item.price} name={item.name} image={item.image}/>)*/}
+            {/*            })}*/}
+            {/*    </div>*/}
+
+            {/*    <p id="sauce" className={styles.category_title} >Соусы</p>*/}
+            {/*    <div className={styles.category_section}>*/}
+            {/*        {isLoading ? 'Загрузка...' : ingredients.data*/}
+            {/*            .filter((item : any, index, array) => (item.type === "sauce"))*/}
+            {/*            .map((item : any, index, array) => {*/}
+            {/*                return (<IngredientCard key={index} price={item.price} name={item.name} image={item.image}/>)*/}
+            {/*            })}*/}
+            {/*    </div>*/}
+
+            {/*    <p id="main" className={styles.category_title}>Начинки</p>*/}
+            {/*    <div className={styles.category_section}>*/}
+            {/*        {isLoading ? 'Загрузка...' : ingredients.data*/}
+            {/*            .filter((item : any, index, array) => (item.type === "main"))*/}
+            {/*            .map((item : any, index, array) => {*/}
+            {/*                return (<IngredientCard key={index} price={item.price} name={item.name} image={item.image}/>)*/}
+            {/*            })}*/}
+            {/*    </div>*/}
             </div>
 
         </>)

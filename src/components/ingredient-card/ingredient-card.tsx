@@ -20,11 +20,40 @@ function IngredientCard (props: any
 
     const [count, setCount] = useState(0);
     const [isDetailsOpened, setStatus] = useState(false);
+    const nutritionFacts = [
+    {
+        type: "calories",
+        caption: "Калории,ккал"
+    }, {
+        type: "proteins",
+        caption: "Белки, г"
+    }, {
+        type: "fat",
+        caption: "Жиры, г"
+    }, {
+        type: "carbohydrates",
+        caption: "Углеводы, г"
+    },
+    ];
+
+
 
 
     const modal = (
         <Modal title="Детали ингредиента" toClose={() => setStatus(false)}>
-            <p>{props.name}</p>
+            <img className={styles.modal_image} src={props.image_large}/>
+            <p className={styles.modal_title}>{props.name}</p>
+            <div className={styles.modal_nutrition_facts}>
+                {nutritionFacts.map((element, index) => {
+                    return (
+                        <div className={styles.modal_nutrition_element}>
+                            <p>{element.caption}</p>
+                            <p className={styles.digits}>{props[element.type]}</p>
+                        </div>
+                    )
+                })}
+            </div>
+
         </Modal>
     );
 
@@ -42,7 +71,6 @@ function IngredientCard (props: any
             {isDetailsOpened && modal}
         </>
     );
-
 
 }
 
