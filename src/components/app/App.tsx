@@ -8,16 +8,19 @@ import BurgerConstructor from "../burger-constructor/burger-constructor";
 
 
 function App() {
-  return (
-      <div className={styles.App}>
-          <AppHeader/>
-          <AppDashboard>
-              <BurgerIngredients/>
-              <BurgerConstructor/>
-          </AppDashboard>
-
-      </div>
+    return (
+        <>
+            <div className={styles.App}>
+                <AppHeader/>
+                <AppDashboard>
+                    <BurgerIngredients/>
+                    <BurgerConstructor/>
+                </AppDashboard>
+            </div>
+        </>
   );
 }
+
+
 
 export default App;

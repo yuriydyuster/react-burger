@@ -1,0 +1,49 @@
+.ingredient_card {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    max-width: 44%;
+    /*flex-grow: 1;*/
+    /*flex-shrink: 1;*/
+
+    border-style: dotted;
+    border-color: white;
+    border-width: 1px;
+
+    composes: mr-4 from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/box.css';
+    composes: ml-4 from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/box.css';
+    composes: mt-6 from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/box.css';
+
+    cursor: pointer;
+}
+
+.card_image {
+    /*width: 100%;*/
+    composes: mr-4 from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/box.css';
+    composes: ml-4 from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/box.css';
+    object-fit: cover;
+}
+
+.card_title {
+    width: 100%;
+    text-wrap: normal;
+    composes: text_type_main-default from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/common.css';
+}
+
+.card_price {
+    display: inline;
+    composes: text_type_digits-default from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/common.css';
+    composes: mr-1 from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/box.css';
+    composes: ml-1 from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/box.css';
+
+
+}
+
+.card_price svg {
+    width: 22px;
+    height: auto;
+    vertical-align: bottom;
+    margin-left: 4px;
+}
+
+

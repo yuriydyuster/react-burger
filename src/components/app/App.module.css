@@ -3,8 +3,11 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  min-height: 100vh;
+  max-height: 100vh;
+  min-height: 100%;
   /*composes: pt-10 from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/box.css';*/
 }
+
+
 
 
