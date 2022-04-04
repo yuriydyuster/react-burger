@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import AppHeader from "../app-header/app-header";
 import styles from "./App.module.css";
-import AppDashboard from "../app-dashboard/app-dashboard";
 import BurgerIngredients from "../burger-ingredients/burger-ingredients";
 import BurgerConstructor from "../burger-constructor/burger-constructor";
 
@@ -21,10 +20,10 @@ function App() {
         <>
             <div className={styles.App}>
                 <AppHeader/>
-                <AppDashboard>
+                <div className={styles.dashboard}>
                     <BurgerIngredients/>
                     <BurgerConstructor orderList={orderList} reConstructBurger={setOrderList}/>
-                </AppDashboard>
+                </div>
             </div>
         </>
   );
