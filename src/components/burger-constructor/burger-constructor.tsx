@@ -41,20 +41,18 @@ function BurgerConstructor (props : {
                         } else {
 
                             return (
-                            <div className={styles.slice} key={index}>
-                                <div className={styles.drag_tag}>
+                            <div className={styles.slice} key={"slice_" + index.toString()}>
+                                <div className={styles.drag_tag} key={"slice_icon_" + index.toString()}>
                                     {!isLocked && <DragIcon type={"primary"}/>}
                                 </div>
-                                <ConstructorElement key={index}// @ts-ignore
-                                                    text={current.name + postfix} // @ts-ignore
-                                                    thumbnail={current.image} // @ts-ignore
-                                                    price={current.price} // @ts-ignore
-                                                    isLocked={isLocked}// @ts-ignore
-                                                    type={type}// @ts-ignore
+                                <ConstructorElement key={"burger_elem_" + index.toString()}
+                                                    text={current.name + postfix}
+                                                    thumbnail={current.image}
+                                                    price={current.price}
+                                                    isLocked={isLocked}
+                                                    type={type}
                                                     handleClose={() => {
                                                         let updatedOrderList = list.slice(0,index).concat(list.slice(index + 1));
-                                                        // console.log(updatedOrderList.length);
-                                                        // @ts-ignore
                                                         props.reConstructBurger(updatedOrderList);
                                                     }
                                                     }

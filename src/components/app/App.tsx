@@ -25,17 +25,24 @@ function App() {
     });
 
     useEffect(() => {
-        const getIngredients = async () => {
+        async function getIngredients() {
+
             setLoadingStatus(true);
-            const res = await fetch(apiServer + 'ingredients' );
-            if (res.ok) {
-                const data = await res.json();
-                setIngredients(data);
+            try {
+                const res = await fetch(apiServer + 'ingredients');
+                if (res.ok) {
+                    const data = await res.json();
+                    setIngredients(data);
+                }
             }
+            catch (e) {
+                console.log(e)}
+
             setLoadingStatus(false);
         }
-        try {getIngredients()}
-        catch (e) {console.log(e)}
+        getIngredients();
+        // Прямо здесь await использовать не получится, потому что:
+        // TS1308: 'await' expressions are only allowed within async functions and at the top levels of modules.
 
     }, []);
 

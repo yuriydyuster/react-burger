@@ -12,13 +12,12 @@ export interface IngredientCardProps  {
         fat?: number,
         carbohydrates?: number,
         calories?: number,
-        price?:number,
-        image?: string,
+        price:number,
+        image: string,
         image_mobile?: string,
         image_large?: string,
         __v?: number,
-        count: number,
-        key?: number}
+        count: number}
 
 function IngredientCard (props: IngredientCardProps) {
 
@@ -38,7 +37,7 @@ function IngredientCard (props: IngredientCardProps) {
             </div>
             {isDetailsOpened && (
                 <Modal title="Детали ингредиента" toClose={() => setStatus(false)}>
-                    <IngredientDetails key={props.key} {...props}/>
+                    <IngredientDetails key={props._id + "_modal_details"} {...props}/>
                 </Modal>)}
         </>
     );

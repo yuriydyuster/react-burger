@@ -46,9 +46,9 @@ const IngredientsTabs = (props: {
     return (
         <>
             <div style={{display: 'flex'}}>
-                {categories.map((item, index) => {
+                {categories.map((item) => {
                     return (
-                        <Tab key={index} value={item.value} active={current === item.value} onClick={setCurrent}>
+                        <Tab key={item.value} value={item.value} active={current === item.value} onClick={setCurrent}>
                             {item.name}
                         </Tab>
                     )
@@ -61,14 +61,14 @@ const IngredientsTabs = (props: {
                 {categories.map((category) => {
                     return (
                         <>
-                            <h2 id={category.value} className={styles.category_title} >{category.name}</h2>
-                            <div className={styles.category_section}>
+                            <h2 key={"title_of_" + category.name} id={category.value} className={styles.category_title} >{category.name}</h2>
+                            <div key={"section_of_" + category.name} className={styles.category_section}>
                                 {props.ingredientList
                                     .filter((ingredient : IngredientCardProps) => (ingredient.type === category.value))
-                                    .map((ingredient : IngredientCardProps, index: number) => {
+                                    .map((ingredient : IngredientCardProps) => {
 
                                         return (<IngredientCard
-                                            key={index} // @ts-ignore
+                                            key={ingredient._id} // @ts-ignore
                                             count={props.orderList.filter((i: string) => {return (i === ingredient._id)}).length}
                                             {...ingredient}/>
                                         )

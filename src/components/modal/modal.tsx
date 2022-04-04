@@ -26,7 +26,7 @@ function Modal (
 
         return () => document.removeEventListener("keypress", handleEscClose);
 
-    }, []);
+    }, [props.toClose]);
     return ReactDOM.createPortal(
 
         <ModalOverlay toClose={() => props.toClose()}>

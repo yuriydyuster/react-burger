@@ -1,20 +1,8 @@
 import React from 'react';
 import styles from "./ingredient-details.module.css";
+import {IngredientCardProps} from "../ingredient-card/ingredient-card";
 
-function IngredientDetails (props: {
-    _id?: string,
-    name?: string,
-    type?: string,
-    proteins?: number,
-    fat?: number,
-    carbohydrates?: number,
-    calories?: number,
-    price?:number,
-    image?: string,
-    image_mobile?: string,
-    image_large?: string,
-    __v?: number }
-) {
+function IngredientDetails (props: IngredientCardProps) {
 
     const nutritionFacts = [
         {
@@ -37,10 +25,11 @@ function IngredientDetails (props: {
             <img alt={props.name} className={styles.image} src={props.image_large}/>
             <p className={styles.title}>{props.name}</p>
             <div className={styles.nutrition_facts}>
-                {nutritionFacts.map((element) => {
+                {nutritionFacts.map((element, index) => {
 
                     return (
-                        <div className={styles.nutrition_element}>
+                        <div className={styles.nutrition_element}
+                            key={props._id + index.toString()}>
                             <p>{element.caption}</p>
                             {/*@ts-ignore*/}
                             <p className={styles.digits}>{props[element.type]}</p>
