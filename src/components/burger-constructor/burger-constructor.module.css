@@ -50,7 +50,6 @@
 
 .total > button {
     margin-left: 40px;
-
 }
 
 .order_confirmation_modal {
@@ -60,22 +59,4 @@
     align-items: center;
 }
 
-.order_confirmation_id {
-    composes: text_type_digits-large from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/common.css';
-    composes: mt-15 from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/box.css';
-    margin-bottom: 0;
-}
 
-.order_confirmation_subtitle {
-    composes: mt-8 from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/box.css';
-    composes: text_type_main-medium from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/common.css';
-}
-
-.order_confirmation_primary_test {
-    composes: text_type_main-default from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/common.css';
-}
-
-.order_confirmation_secondary_test {
-    composes: text_type_main-default from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/common.css';
-    composes: text_color_inactive from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/common.css';
-}

@@ -1,23 +1,45 @@
-import React from "react";
+import React, {useEffect} from "react";
 import styles from "./modal.module.css";
 import ReactDOM from "react-dom";
 import {CloseIcon} from "@ya.praktikum/react-developer-burger-ui-components";
+import ModalOverlay from "../modal-overlay/modal-overlay";
 
 const modalRoot = document.getElementById("portal_root");
 
-function Modal(props: any) {
+function Modal (
+    props: {
+        children: React.ReactNode,
+        toClose: () => void,
+        title: string })
+{
+    useEffect( () => {
+        function handleEscClose(e: KeyboardEvent) {
+            // У меня не работает кнопка Esc, поэтому оттестировал функционал на других клавишах, нужное значение e.key
+            // для Esc взял из документации, там нашлось 2 варианта...
 
+            if ((e.key === "Escape") || (e.key === "Esc")) {
+                props.toClose();
+            }
+        }
+
+        document.addEventListener("keypress", handleEscClose, false)
+
+        return () => document.removeEventListener("keypress", handleEscClose);
+
+    }, [props.toClose]);
     return ReactDOM.createPortal(
-        <div className={styles.overlay} onClick={() => props.toClose()}>
-            <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
+
+        <ModalOverlay toClose={() => props.toClose()}>
+            <div className={styles.modal}
+                 onClick={(e) => e.stopPropagation()}>
                 <div className={styles.header}>
-                    <p className={styles.title} >{props.title}</p>
+                    <h1 className={styles.title} >{props.title}</h1>
                     <CloseIcon type={"primary"} onClick={() => props.toClose()}/>
                 </div>
                 {props.children}
             </div>
-        </div>,
-        // @ts-ignore
+        </ModalOverlay>,
+    // @ts-ignore
     modalRoot);
 }
 

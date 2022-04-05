@@ -25,8 +25,6 @@ function AppHeader() {
                     <ProfileIcon type={"secondary"}/>
                 </HeaderMenuItem>
                 </div>
-
-
             </div>
         </header>
     );
