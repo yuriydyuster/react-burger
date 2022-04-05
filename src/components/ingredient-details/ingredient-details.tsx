@@ -29,7 +29,7 @@ function IngredientDetails (props: IngredientCardProps) {
 
                     return (
                         <div className={styles.nutrition_element}
-                            key={props._id + index.toString()}>
+                            key={index}>
                             <p>{element.caption}</p>
                             {/*@ts-ignore*/}
                             <p className={styles.digits}>{props[element.type]}</p>

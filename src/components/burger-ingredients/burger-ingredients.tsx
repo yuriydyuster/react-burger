@@ -38,7 +38,6 @@ const IngredientsTabs = (props: {
 
     const [current, setCurrent] = React.useState(categories[props.initialTab].value);
     useEffect(() => {
-        console.log(current);
         document.location.href = "#"+current;
     }, [current]);
 
@@ -60,7 +59,7 @@ const IngredientsTabs = (props: {
 
                 {categories.map((category) => {
                     return (
-                        <>
+                        <React.Fragment key={category.name}>
                             <h2 key={"title_of_" + category.name} id={category.value} className={styles.category_title} >{category.name}</h2>
                             <div key={"section_of_" + category.name} className={styles.category_section}>
                                 {props.ingredientList
@@ -74,7 +73,7 @@ const IngredientsTabs = (props: {
                                         )
                                     })}
                             </div>
-                        </>
+                        </React.Fragment>
                     )
                 })}
 

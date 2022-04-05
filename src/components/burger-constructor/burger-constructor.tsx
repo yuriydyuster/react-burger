@@ -37,7 +37,7 @@ function BurgerConstructor (props : {
                         const postfix = isTop ? " (верх)" : isBottom ? " (низ)" : "";
 
                         if ((current === undefined)) {
-                            return (<></>);
+                            return ('');
                         } else {
 
                             return (
