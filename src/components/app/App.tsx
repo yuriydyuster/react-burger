@@ -1,8 +1,9 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useContext} from 'react';
 import AppHeader from "../app-header/app-header";
 import styles from "./App.module.css";
 import BurgerIngredients from "../burger-ingredients/burger-ingredients";
 import BurgerConstructor from "../burger-constructor/burger-constructor";
+import { IngredientsContext, OrderContext } from "../services/app-context";
 
 
 function App() {
@@ -19,45 +20,42 @@ function App() {
     ]);
 
     const [isLoading, setLoadingStatus] = React.useState(false);
-    const [ingredients, setIngredients] = React.useState({
-        data: [],
-        success: false,
-    });
+    const [ingredients, setIngredients] = React.useState( []
+    //     {
+    //     data: [],
+    //     success: false,
+    // }
+    );
 
     useEffect(() => {
         async function getIngredients() {
-
             setLoadingStatus(true);
             try {
                 const res = await fetch(apiServer + 'ingredients');
                 if (res.ok) {
                     const data = await res.json();
-                    setIngredients(data);
+                    setIngredients(data.data);
                 }
             }
             catch (e) {
                 console.log(e)}
-
             setLoadingStatus(false);
         }
         getIngredients();
-        // Прямо здесь await использовать не получится, потому что:
-        // TS1308: 'await' expressions are only allowed within async functions and at the top levels of modules.
-
     }, []);
 
 
     return (
-        <>
+        <IngredientsContext.Provider value={{ingredients, isLoading}}>
             <div className={styles.App}>
                 <AppHeader/>
                 {isLoading? <p>Loading...</p> : (
                 <div className={styles.dashboard}>
-                    <BurgerIngredients ingredientList={ingredients.data} orderList={orderList}/>
-                    <BurgerConstructor orderList={orderList} reConstructBurger={setOrderList} ingredients={ingredients.data}/>
+                    <BurgerIngredients ingredientList={ingredients} orderList={orderList}/>
+                    <BurgerConstructor orderList={orderList} reConstructBurger={setOrderList} ingredients={ingredients}/>
                 </div>)}
             </div>
-        </>
+        </IngredientsContext.Provider>
   );
 }
 

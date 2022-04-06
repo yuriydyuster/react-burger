@@ -1,8 +1,11 @@
-import React, {useEffect} from "react";
+import React, {useContext, useEffect} from "react";
 import styles from "./burger-ingredients.module.css";
 import {Tab} from '@ya.praktikum/react-developer-burger-ui-components';
 import IngredientCard from "../ingredient-card/ingredient-card";
 import {IngredientCardProps} from "../ingredient-card/ingredient-card";
+import {IngredientsContext, OrderContext} from "../services/app-context";
+
+
 
 
 function BurgerIngredients (props : {
@@ -10,19 +13,27 @@ function BurgerIngredients (props : {
     orderList: string[]
 }) {
 
+
+
     return (
         <div className={styles.burger_ingredients}>
             <h1 className={styles.title}>
                 Соберите бургер
             </h1>
-            <IngredientsTabs initialTab={0} orderList={props.orderList} ingredientList={props.ingredientList}/>
+            <IngredientsTabs
+                initialTab={0}
+                orderList={props.orderList}
+                //ingredientList={props.ingredientList}
+            />
         </div>
     );
 }
 
+
+
 const IngredientsTabs = (props: {
     initialTab: number,
-    ingredientList: IngredientCardProps[],
+    //ingredientList: IngredientCardProps[],
     orderList: string[]
 }) => {
     const categories = [{
@@ -41,8 +52,12 @@ const IngredientsTabs = (props: {
         document.location.href = "#"+current;
     }, [current]);
 
+    const {ingredients, isLoading} = useContext(IngredientsContext);
+
+    console.log(ingredients);
 
     return (
+        isLoading ? (<></>) : (
         <>
             <div style={{display: 'flex'}}>
                 {categories.map((item) => {
@@ -62,7 +77,7 @@ const IngredientsTabs = (props: {
                         <React.Fragment key={category.name}>
                             <h2 key={"title_of_" + category.name} id={category.value} className={styles.category_title} >{category.name}</h2>
                             <div key={"section_of_" + category.name} className={styles.category_section}>
-                                {props.ingredientList
+                                {ingredients
                                     .filter((ingredient : IngredientCardProps) => (ingredient.type === category.value))
                                     .map((ingredient : IngredientCardProps) => {
 
@@ -80,6 +95,6 @@ const IngredientsTabs = (props: {
             </div>
 
         </>)
-
+    )
 }
 export default BurgerIngredients;

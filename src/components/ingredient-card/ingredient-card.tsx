@@ -26,7 +26,16 @@ function IngredientCard (props: IngredientCardProps) {
 
     return (
         <>
-            <div className={styles.ingredient_card} onClick={() => setStatus(true)}>
+            <div className={styles.ingredient_card}
+                 onClick={() => setStatus(true)}
+
+                 // Для тестирования и отладки добавление ингредиента в бургер вызыввается нажатием правой кнопки мыши
+                 onContextMenu={(e) => {
+                    console.log(props.name);
+                    e.preventDefault();
+                    e.stopPropagation()
+                 }
+            }>
                 {props.count!==0 && (<Counter count={props.count} size="default" />)}
                 <img className={styles.card_image} src={props.image} alt={props.name}/>
                 <div className={styles.card_price}>
