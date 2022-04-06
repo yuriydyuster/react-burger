@@ -23,7 +23,7 @@ export interface IngredientCardProps  {
 function IngredientCard (props: IngredientCardProps) {
 
     const [isDetailsOpened, setStatus] = useState(false);
-    const {orderList, setOrderList} = useContext(OrderContext);
+    const { orderListDispatcher} = useContext(OrderContext);
 
     return (
         <>
@@ -33,7 +33,7 @@ function IngredientCard (props: IngredientCardProps) {
                  // Для тестирования и отладки добавление ингредиента в бургер вызыввается нажатием правой кнопки мыши
                  onContextMenu={(e) => {
                     // @ts-ignore
-                     setOrderList([...orderList, props._id]);
+                     orderListDispatcher({type: "order", ingredientID: props._id});
                      e.preventDefault();
                      e.stopPropagation()
                  }
