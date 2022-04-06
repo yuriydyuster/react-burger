@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useContext} from 'react';
+import React, {useEffect, useState} from 'react';
 import AppHeader from "../app-header/app-header";
 import styles from "./App.module.css";
 import BurgerIngredients from "../burger-ingredients/burger-ingredients";
@@ -45,14 +45,18 @@ function App() {
     }, []);
 
 
+
     return (
         <IngredientsContext.Provider value={{ingredients, isLoading}}>
             <div className={styles.App}>
                 <AppHeader/>
                 {isLoading? <p>Loading...</p> : (
                 <div className={styles.dashboard}>
-                    <BurgerIngredients ingredientList={ingredients} orderList={orderList}/>
-                    <BurgerConstructor orderList={orderList} reConstructBurger={setOrderList} ingredients={ingredients}/>
+                    {/*// @ts-ignore*/}
+                    <OrderContext.Provider value={{orderList, setOrderList}} >
+                        <BurgerIngredients />
+                        <BurgerConstructor />
+                    </OrderContext.Provider>
                 </div>)}
             </div>
         </IngredientsContext.Provider>

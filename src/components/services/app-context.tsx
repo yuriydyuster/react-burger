@@ -5,6 +5,8 @@ export const IngredientsContext = React.createContext({
     isLoading: false
 });
 
+
 export const OrderContext = React.createContext({
-    orderList: []
+    orderList: [],
+    setOrderList: undefined
 });

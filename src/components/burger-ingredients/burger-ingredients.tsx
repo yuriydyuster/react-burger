@@ -8,23 +8,14 @@ import {IngredientsContext, OrderContext} from "../services/app-context";
 
 
 
-function BurgerIngredients (props : {
-    ingredientList: IngredientCardProps[],
-    orderList: string[]
-}) {
-
-
+function BurgerIngredients () {
 
     return (
         <div className={styles.burger_ingredients}>
             <h1 className={styles.title}>
                 Соберите бургер
             </h1>
-            <IngredientsTabs
-                initialTab={0}
-                orderList={props.orderList}
-                //ingredientList={props.ingredientList}
-            />
+            <IngredientsTabs initialTab={0} />
         </div>
     );
 }
@@ -33,8 +24,6 @@ function BurgerIngredients (props : {
 
 const IngredientsTabs = (props: {
     initialTab: number,
-    //ingredientList: IngredientCardProps[],
-    orderList: string[]
 }) => {
     const categories = [{
         value: "bun",
@@ -53,8 +42,7 @@ const IngredientsTabs = (props: {
     }, [current]);
 
     const {ingredients, isLoading} = useContext(IngredientsContext);
-
-    console.log(ingredients);
+    const {orderList} = useContext(OrderContext);
 
     return (
         isLoading ? (<></>) : (
@@ -83,7 +71,7 @@ const IngredientsTabs = (props: {
 
                                         return (<IngredientCard
                                             key={ingredient._id} // @ts-ignore
-                                            count={props.orderList.filter((i: string) => {return (i === ingredient._id)}).length}
+                                            count={orderList.filter((i: string) => {return (i === ingredient._id)}).length}
                                             {...ingredient}/>
                                         )
                                     })}

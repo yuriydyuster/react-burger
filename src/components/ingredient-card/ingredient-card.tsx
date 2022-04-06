@@ -1,8 +1,9 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import styles from "./ingredient-card.module.css";
 import {CurrencyIcon, Counter} from '@ya.praktikum/react-developer-burger-ui-components';
 import Modal from "../modal/modal";
 import IngredientDetails from "../ingredient-details/ingredient-details";
+import {OrderContext} from "../services/app-context";
 
 export interface IngredientCardProps  {
         _id?: string,
@@ -21,8 +22,8 @@ export interface IngredientCardProps  {
 
 function IngredientCard (props: IngredientCardProps) {
 
-    // const [count, setCount] = useState(0);
     const [isDetailsOpened, setStatus] = useState(false);
+    const {orderList, setOrderList} = useContext(OrderContext);
 
     return (
         <>
@@ -31,9 +32,10 @@ function IngredientCard (props: IngredientCardProps) {
 
                  // Для тестирования и отладки добавление ингредиента в бургер вызыввается нажатием правой кнопки мыши
                  onContextMenu={(e) => {
-                    console.log(props.name);
-                    e.preventDefault();
-                    e.stopPropagation()
+                    // @ts-ignore
+                     setOrderList([...orderList, props._id]);
+                     e.preventDefault();
+                     e.stopPropagation()
                  }
             }>
                 {props.count!==0 && (<Counter count={props.count} size="default" />)}
