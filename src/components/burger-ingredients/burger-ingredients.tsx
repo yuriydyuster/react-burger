@@ -3,7 +3,7 @@ import styles from "./burger-ingredients.module.css";
 import {Tab} from '@ya.praktikum/react-developer-burger-ui-components';
 import IngredientCard from "../ingredient-card/ingredient-card";
 import {IngredientCardProps} from "../ingredient-card/ingredient-card";
-import {IngredientsContext, OrderContext} from "../services/app-context";
+import {IngredientsContext, OrderContext} from "../../services/app-context";
 
 
 
@@ -59,18 +59,18 @@ const IngredientsTabs = (props: {
             </div>
 
             <div className={styles.catalogue}>
-
                 {categories.map((category) => {
                     return (
                         <React.Fragment key={category.name}>
-                            <h2 key={"title_of_" + category.name} id={category.value} className={styles.category_title} >{category.name}</h2>
+                            <h2 key={"title_of_" + category.name} id={category.value} className={styles.category_title}>
+                                {category.name}
+                            </h2>
                             <div key={"section_of_" + category.name} className={styles.category_section}>
                                 {ingredients
                                     .filter((ingredient : IngredientCardProps) => (ingredient.type === category.value))
                                     .map((ingredient : IngredientCardProps) => {
-
                                         return (<IngredientCard
-                                            key={ingredient._id} // @ts-ignore
+                                            key={ingredient._id}
                                             count={orderList.filter((i: string) => {return (i === ingredient._id)}).length}
                                             {...ingredient}/>
                                         )
@@ -79,9 +79,7 @@ const IngredientsTabs = (props: {
                         </React.Fragment>
                     )
                 })}
-
             </div>
-
         </>)
     )
 }

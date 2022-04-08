@@ -3,22 +3,22 @@ import styles from "./ingredient-card.module.css";
 import {CurrencyIcon, Counter} from '@ya.praktikum/react-developer-burger-ui-components';
 import Modal from "../modal/modal";
 import IngredientDetails from "../ingredient-details/ingredient-details";
-import {OrderContext} from "../services/app-context";
+import {OrderContext} from "../../services/app-context";
 
 export interface IngredientCardProps  {
-        _id?: string,
-        name?: string,
-        type?: string,
-        proteins?: number,
-        fat?: number,
-        carbohydrates?: number,
-        calories?: number,
+        _id: string,
+        name: string,
+        type: string,
+        proteins: number,
+        fat: number,
+        carbohydrates: number,
+        calories: number,
         price:number,
         image: string,
-        image_mobile?: string,
-        image_large?: string,
-        __v?: number,
-        count: number}
+        image_mobile: string,
+        image_large: string,
+        __v: number,
+        count?: number}
 
 function IngredientCard (props: IngredientCardProps) {
 
@@ -32,13 +32,14 @@ function IngredientCard (props: IngredientCardProps) {
 
                  // Для тестирования и отладки добавление ингредиента в бургер вызыввается нажатием правой кнопки мыши
                  onContextMenu={(e) => {
-                    // @ts-ignore
+                     // @ts-ignore я описал сеттеры и диспатчеры типом Object в контекстах, ничего другого не работало,
+                     // но кажется, что это тоже не совсем то, что нужно...
                      orderListDispatcher({type: "order", ingredientID: props._id});
                      e.preventDefault();
                      e.stopPropagation()
                  }
             }>
-                {props.count!==0 && (<Counter count={props.count} size="default" />)}
+                {props.count? (<Counter count={props.count} size="default" />) : ""}
                 <img className={styles.card_image} src={props.image} alt={props.name}/>
                 <div className={styles.card_price}>
                     <p className={styles.card_price}>{props.price}</p>

@@ -5,7 +5,9 @@ import {CurrencyIcon, Button} from "@ya.praktikum/react-developer-burger-ui-comp
 import Modal from "../modal/modal";
 import {IngredientCardProps} from "../ingredient-card/ingredient-card";
 import OrderDetails from "../order-details/order-details";
-import {API_URL, IngredientsContext, OrderContext, PriceContext, getIngredientByID} from "../services/app-context";
+import {IngredientsContext, OrderContext, PriceContext} from "../../services/app-context";
+import {API_URL} from "../../services/constants";
+import {getIngredientByID} from "../../utils/utils";
 
 function BurgerConstructor () {
 

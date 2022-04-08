@@ -3,25 +3,20 @@ import AppHeader from "../app-header/app-header";
 import styles from "./App.module.css";
 import BurgerIngredients from "../burger-ingredients/burger-ingredients";
 import BurgerConstructor from "../burger-constructor/burger-constructor";
-import { API_URL, IngredientsContext, OrderContext, PriceContext, getIngredientByID, isBunOrdered } from "../services/app-context";
+import { IngredientsContext, OrderContext, PriceContext} from "../../services/app-context";
+import {API_URL} from "../../services/constants";
+import {getIngredientByID, isBunOrdered} from "../../utils/utils";
 
 
 
 function App() {
 
     const initialOrderList : string[] = [
-        //'60d3b41abdacab0026a733c6',
-        // '60d3b41abdacab0026a733d0',
-        // '60d3b41abdacab0026a733cb',
-        // '60d3b41abdacab0026a733d3',
-        // '60d3b41abdacab0026a733d4',
-        // '60d3b41abdacab0026a733cc',
-        //'60d3b41abdacab0026a733c6'
     ];
 
     const [isLoading, setLoadingStatus] = React.useState(false);
     const [ingredients, setIngredients] = React.useState( []);
-    const [totalPrice, setTotalPrice] = React.useState( );
+    const [totalPrice, setTotalPrice] = React.useState(0);
 
     function orderListReducer (state: string[], action: {type: string, ingredientID: string}) {
         const ingredient = getIngredientByID(ingredients, action.ingredientID);
@@ -94,23 +89,22 @@ function App() {
 
 
     return (
-        // @ts-ignore
-        <IngredientsContext.Provider value={{ingredients, isLoading}}>
-            <div className={styles.App}>
-                <AppHeader/>
-                {isLoading? <p>Loading...</p> : (
-                <div className={styles.dashboard}>
-                    {/*// @ts-ignore*/}
-                    <OrderContext.Provider value={{orderList, orderListDispatcher, totalPrice, setTotalPrice}} >
-                        <BurgerIngredients />
-                        {/*// @ts-ignore*/}
-                        <PriceContext.Provider value={{ totalPrice, setTotalPrice}} >
-                            <BurgerConstructor />
-                        </PriceContext.Provider>
-                    </OrderContext.Provider>
-                </div>)}
-            </div>
-        </IngredientsContext.Provider>
+        <div className={styles.App}>
+            <AppHeader/>
+            {isLoading? <p>Loading...</p> : (
+                <IngredientsContext.Provider value={{ingredients, isLoading}}>
+                    <div className={styles.dashboard}>
+                        <OrderContext.Provider value={{orderList, orderListDispatcher}} >
+                            <BurgerIngredients />
+                            <PriceContext.Provider value={{ totalPrice, setTotalPrice}} >
+                                <BurgerConstructor />
+                            </PriceContext.Provider>
+                        </OrderContext.Provider>
+                    </div>
+                </IngredientsContext.Provider>
+            )}
+        </div>
+
   );
 }
 
