@@ -6,6 +6,7 @@ function OrderDetails (props: {
     orderID: string;
 }) {
 
+
     return (
         <>
             <p className={styles.order_confirmation_id}>{props.orderID}</p>

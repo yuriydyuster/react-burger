@@ -1,29 +1,29 @@
-import React, {useEffect} from "react";
+import React, {useContext, useEffect} from "react";
 import styles from "./burger-ingredients.module.css";
 import {Tab} from '@ya.praktikum/react-developer-burger-ui-components';
 import IngredientCard from "../ingredient-card/ingredient-card";
 import {IngredientCardProps} from "../ingredient-card/ingredient-card";
+import {IngredientsContext, OrderContext} from "../../services/app-context";
 
 
-function BurgerIngredients (props : {
-    ingredientList: IngredientCardProps[],
-    orderList: string[]
-}) {
+
+
+function BurgerIngredients () {
 
     return (
         <div className={styles.burger_ingredients}>
             <h1 className={styles.title}>
                 Соберите бургер
             </h1>
-            <IngredientsTabs initialTab={0} orderList={props.orderList} ingredientList={props.ingredientList}/>
+            <IngredientsTabs initialTab={0} />
         </div>
     );
 }
 
+
+
 const IngredientsTabs = (props: {
     initialTab: number,
-    ingredientList: IngredientCardProps[],
-    orderList: string[]
 }) => {
     const categories = [{
         value: "bun",
@@ -41,8 +41,11 @@ const IngredientsTabs = (props: {
         document.location.href = "#"+current;
     }, [current]);
 
+    const {ingredients, isLoading} = useContext(IngredientsContext);
+    const {orderList} = useContext(OrderContext);
 
     return (
+        isLoading ? (<></>) : (
         <>
             <div style={{display: 'flex'}}>
                 {categories.map((item) => {
@@ -56,19 +59,19 @@ const IngredientsTabs = (props: {
             </div>
 
             <div className={styles.catalogue}>
-
                 {categories.map((category) => {
                     return (
                         <React.Fragment key={category.name}>
-                            <h2 key={"title_of_" + category.name} id={category.value} className={styles.category_title} >{category.name}</h2>
+                            <h2 key={"title_of_" + category.name} id={category.value} className={styles.category_title}>
+                                {category.name}
+                            </h2>
                             <div key={"section_of_" + category.name} className={styles.category_section}>
-                                {props.ingredientList
+                                {ingredients
                                     .filter((ingredient : IngredientCardProps) => (ingredient.type === category.value))
                                     .map((ingredient : IngredientCardProps) => {
-
                                         return (<IngredientCard
-                                            key={ingredient._id} // @ts-ignore
-                                            count={props.orderList.filter((i: string) => {return (i === ingredient._id)}).length}
+                                            key={ingredient._id}
+                                            count={orderList.filter((i: string) => {return (i === ingredient._id)}).length}
                                             {...ingredient}/>
                                         )
                                     })}
@@ -76,10 +79,8 @@ const IngredientsTabs = (props: {
                         </React.Fragment>
                     )
                 })}
-
             </div>
-
         </>)
-
+    )
 }
 export default BurgerIngredients;

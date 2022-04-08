@@ -31,8 +31,8 @@ function IngredientDetails (props: IngredientCardProps) {
                         <div className={styles.nutrition_element}
                             key={index}>
                             <p>{element.caption}</p>
-                            {/*@ts-ignore*/}
-                            <p className={styles.digits}>{props[element.type]}</p>
+                            {/*// @ts-ignore этот игнор никак не убирается (((*/}
+                            <p className={styles.digits}>{props[element.type]?.toString() }</p>
                         </div>
                     )
                 })}
